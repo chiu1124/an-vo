@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Tối mai đi chơi không &lt;33</title>
+    <!-- Google Fonts: Share Tech Mono for hacker style -->
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: #0f2027; /* dark gradient */
+            background: linear-gradient(135deg, #0f2027 0%, #2c5364 100%);
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .hacker-bg {
+            position: fixed;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            opacity: 0.15;
+        }
+        .hacker-bg span {
+            color: #39ff14;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 24px;
+            white-space: pre;
+            user-select: none;
+            line-height: 1.2;
+        }
+        .main-text {
+            font-family: 'Share Tech Mono', monospace;
+            color: #39ff14;
+            font-size: 3em;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px #39ff14, 0 0 20px #39ff14;
+            position: relative;
+            z-index: 2;
+            animation: hacker-typing 3s steps(22) 1;
+            border-right: 4px solid #39ff14;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+        @keyframes hacker-typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="hacker-bg" id="hackerBg"></div>
+    <div class="main-text">Tối mai đi chơi không&lt;33</div>
+    <script>
+        // Tạo nền chữ kiểu hacker matrix
+        const hackerBg = document.getElementById('hackerBg');
+        const rows = 20;
+        const cols = 60;
+        const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*";
+        let html = "";
+        for (let r = 0; r < rows; r++) {
+            html += "<span>";
+            for (let c = 0; c < cols; c++) {
+                html += chars[Math.floor(Math.random() * chars.length)];
+            }
+            html += "</span><br>";
+        }
+        hackerBg.innerHTML = html;
+
+        // Hiệu ứng thay đổi chữ nền
+        setInterval(() => {
+            const spans = hackerBg.querySelectorAll('span');
+            spans.forEach(span => {
+                let newText = "";
+                for (let i = 0; i < span.textContent.length; i++) {
+                    newText += chars[Math.floor(Math.random() * chars.length)];
+                }
+                span.textContent = newText;
+            });
+        }, 150);
+    </script>
+</body>
+</html>
